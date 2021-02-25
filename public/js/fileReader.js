@@ -6,10 +6,13 @@ window.onload = () => {
         const file = fileReader.files[0];
         const reader = new FileReader();
 
-        reader.onload = () => console.log(reader.result);
-        reader.onerror = err => console.error(err);
-
         // 파일 불러오기 시작.
-        reader.readAsText(file);
+        if (file) {
+            reader.onload = () => console.log(reader.result);
+            fileReader.value = "";
+            reader.onerror = err => console.error(err);
+
+            reader.readAsText(file);
+        }
     });
 };
